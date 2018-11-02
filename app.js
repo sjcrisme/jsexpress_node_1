@@ -16,8 +16,12 @@ app.get('/', function (req, res) {
   res.render('index.html');
 });
 
+app.get('/about', function(req, res) {
+    res.render('about.html');
+});
+
 app.get('/article', function(req, res) {
-  const post = require('./data/post');
+  const post = require('./data/post.json');
   res.json(post);
 });
 
