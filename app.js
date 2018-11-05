@@ -28,10 +28,26 @@ app.get('/article', function(req, res) {
   const post = require('./public/data/post.json');
   res.json(post);
 });
+
 app.post('/contact', function(req, res) {
   const user = req.body;
-  console.log('user: ',user);
+  if (user) {
+      if (user.every(x => x !== '')) {
+          res.status(201).end();
+      }
+  }
+  res.status(400).send('error');
+
 });
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+    next(createError(404));
+});
+
+function createError(err) {
+  console.log(err);
+}
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
